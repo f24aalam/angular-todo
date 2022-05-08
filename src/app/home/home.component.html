@@ -1,0 +1,15 @@
+<header class="text-gray-600 body-font shadow bg-red-50">
+  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" data-bcup-haslogintext="no">
+      <span class="ml-3 text-xl">Todo App</span>
+    </a>
+    <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+      <a routerLink="/home" class="mr-5 hover:text-red-500" data-bcup-haslogintext="no">Home</a>
+      <a routerLink="categories" class="mr-5 hover:text-red-500" data-bcup-haslogintext="no">Categories</a>
+    </nav>
+    <button class="inline-flex items-center bg-red-500 text-white border-0 py-1 px-3 focus:outline-none hover:bg-red-600 rounded text-base mt-4 md:mt-0" data-bcup-haslogintext="no">
+      Logout
+    </button>
+  </div>
+</header>
+<router-outlet></router-outlet>

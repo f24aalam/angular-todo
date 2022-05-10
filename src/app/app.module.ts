@@ -7,6 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AuthComponent,
     HomeComponent,
     CategoriesComponent,
-    DashboardComponent
+    DashboardComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,

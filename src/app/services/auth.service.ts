@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthChangeEvent, Session, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
+import { SupabaseService } from './supabase.service';
 
 export interface Profile {
   username: string;
@@ -10,12 +11,7 @@ export interface Profile {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  private supabase: SupabaseClient;
-
-  constructor() {
-    this.supabase = new SupabaseClient(environment.supabaseUrl, environment.supabaseKey);
-  }
+export class AuthService extends SupabaseService{
 
   get user() {
     return this.supabase.auth.user();

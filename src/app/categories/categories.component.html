@@ -1,1 +1,24 @@
-<p>categories works!</p>
+<div class="mx-28 mt-10">
+  <div class="flex justify-between">
+    <h1 class="text-lg">Categories</h1>
+    <div class="flex gap-2">
+      <input
+        #name
+        type="text"
+        class="rounded ring-red-500 border-red-500" placeholder="Category Name"
+      >
+      <button
+        type="submit"
+        class="bg-red-500 px-4 rounded text-white"
+        (click)="addCategory(name.value)"
+      >
+        Add
+      </button>
+    </div>
+  </div>
+  <div class="mt-4 shadow">
+    <div *ngFor="let category of categories">
+      {{ category.name }}
+    </div>
+  </div>
+</div>

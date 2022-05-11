@@ -3,9 +3,58 @@
     <div class="flex flex-col h-full items-center justify-center">
       <h1 class="text-2xl font-extralight">Angular Todo App</h1>
       <div class="w-full px-12 mt-4">
-        <input type="text" class="w-full rounded border-red-500 focus:ring-red-500 focus:border-red-500" placeholder="Enter you email address"/>
-        <p class="text-gray-500 font-extralight text-sm">enter your email address to get magic login link</p>
-        <button class="bg-red-500 px-4 py-2 rounded w-full mt-3 text-white hover:bg-red-400">Login</button>
+        <input
+          #email
+          type="email"
+          class="w-full rounded border-red-500 focus:ring-red-500 focus:border-red-500"
+          placeholder="Email Address"
+        />
+        <input
+          #password
+          type="password"
+          class="w-full rounded border-red-500 focus:ring-red-500 focus:border-red-500 mt-3"
+          placeholder="Password"
+        />
+        <div *ngIf="errorMessage" class="w-full rounded border-red-300 border bg-red-200 text-red-500 mt-4 p-3">
+          {{ errorMessage }}
+        </div>
+        <div *ngIf="successMessage" class="w-full rounded border-green-300 border bg-green-200 text-green-500 mt-4 p-3">
+          {{ successMessage }}
+        </div>
+        <div *ngIf="isLoggedIn;else registerComp">
+          <button
+            class="bg-red-500 px-4 py-2 rounded w-full mt-3 text-white hover:bg-red-400"
+            (click)="handleLogin(email.value, password.value)"
+            [disabled]="loading"
+          >
+            {{ loading ? 'Singing In...' : 'Sign In' }}
+          </button>
+          <div class="mt-1 flex justify-end px-2">
+            <button
+              class="text-red-500 hover:text-red-400"
+              (click)="register()">
+              Need an Accout? Register
+            </button>
+          </div>
+        </div>
+        <ng-template #registerComp>
+          <div>
+            <button
+              class="bg-red-500 px-4 py-2 rounded w-full mt-3 text-white hover:bg-red-400"
+              (click)="handleRegister(email.value, password.value)"
+              [disabled]="loading"
+            >
+              {{ loading ? 'Registering..' : 'Register' }}
+            </button>
+            <div class="mt-1 flex justify-end px-2">
+              <button
+                class="text-red-500 hover:text-red-400"
+                (click)="login()">
+                Already registered? Login
+              </button>
+            </div>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>

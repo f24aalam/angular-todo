@@ -44,5 +44,12 @@ export class CategoryService extends SupabaseService {
         name: name,
       })
       .match({'id': category.id});
-    }
+  }
+
+  delete(category: Category) {
+    return this.supabase
+      .from('categories')
+      .delete()
+      .match({'id': category.id});
+  }
 }

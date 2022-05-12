@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { SupabaseService } from './supabase.service';
 
-interface Category {
+export interface Category {
   id: number;
   name: string;
   active: boolean;
+  editing: boolean;
+  saving: boolean;
 }
 
 @Injectable({
@@ -34,4 +36,13 @@ export class CategoryService extends SupabaseService {
         created_at: new Date(),
       }])
   }
+
+  update(name: string, category: Category) {
+    return this.supabase
+      .from('categories')
+      .update({
+        name: name,
+      })
+      .match({'id': category.id});
+    }
 }

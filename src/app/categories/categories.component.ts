@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../services/category.service';
+import { Category, CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -12,7 +12,11 @@ export class CategoriesComponent implements OnInit {
 
   constructor(public readonly categoryService: CategoryService) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.fetchCategories();
+  }
+
+  async fetchCategories() {
     const {data, error} = await this.categoryService.categories;
 
     if (error) {
@@ -26,6 +30,7 @@ export class CategoriesComponent implements OnInit {
   async addCategory(name: string) {
     this.addingCategories = true;
     const { data, error } = await this.categoryService.add(name);
+    this.fetchCategories();
     this.addingCategories = false;
 
     if (error) {
@@ -33,4 +38,26 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
+  async editCategory(name: string, category: Category) {
+    category.saving = true;
+    const { data, error } = await this.categoryService.update(name, category)
+
+    category.saving = false;
+
+    if (error) {
+      alert(error);
+      return;
+    }
+
+    category.name = name;
+    category.editing = false;
+  }
+
+  enableEditMode(category: Category) {
+    category.editing = true;
+  }
+
+  disableEditMode(category: Category) {
+    category.editing = false;
+  }
 }
